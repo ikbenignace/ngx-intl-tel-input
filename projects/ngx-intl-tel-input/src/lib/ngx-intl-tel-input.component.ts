@@ -2,6 +2,7 @@ import * as lpn from 'google-libphonenumber';
 
 import {
   Component,
+  ContentChild,
   ElementRef,
   EventEmitter,
   forwardRef,
@@ -99,6 +100,12 @@ export class NgxIntlTelInputComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.init();
+  }
+
+  @ContentChild('ngContent', {static: false}) ngContent!: ElementRef;
+
+  hasContent(): boolean {
+    return !!this.ngContent.nativeElement.innerHTML.trim();
   }
 
   ngOnChanges(changes: SimpleChanges) {
